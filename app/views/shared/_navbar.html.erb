@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li class="navbar-text">
-            Logged in as <%= current_user.name.capitalize %>
+            Logged in as <%= current_user.email %>
           </li>
           <li>
             <%= link_to logout_path, method: :delete do %>
@@ -24,8 +24,8 @@
           </li>
         <% else %>
           <li>
-            <%= link_to login_path do %>
-              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login
+            <%= link_to new_user_path do %>
+              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log In or Sign Up
             <% end %>
           </li>
         <% end %>

@@ -1,0 +1,26 @@
+<center>
+  <h1><strong>Create an Account</strong></h1>
+</center>
+
+<div class="well col-md-4 col-md-offset-4">
+  <form action="<%= users_path %>" method="post" id="signup-form">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" class="form-control" placeholder="Email Address">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+      <label for="password_confirmation">Confirm Password</label>
+      <input type="password" name="password_confirmation" class="form-control" placeholder="Password">
+    </div>
+
+    <center>
+      <button type="submit" class="btn btn-success">Sign Up</button>
+    </center>
+  </form>
+</div>
