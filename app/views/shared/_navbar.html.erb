@@ -19,13 +19,18 @@
           </li>
           <li>
             <%= link_to logout_path, method: :delete do %>
-              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out
             <% end %>
           </li>
         <% else %>
           <li>
+            <%= link_to login_path do %>
+              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log In
+            <% end %>
+          </li>
+          <li>
             <%= link_to new_user_path do %>
-              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log In or Sign Up
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign Up
             <% end %>
           </li>
         <% end %>

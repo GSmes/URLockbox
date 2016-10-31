@@ -1,24 +1,21 @@
 require "rails_helper"
 
-RSpec.feature "Sign Up" do
-  scenario "they are redirected to a form to create an account or sign in" do
-    user = build(:user)
+RSpec.feature "Log In" do
+  scenario "they log in with valid credentials" do
+    user = create(:user)
 
     visit root_path
 
-    click_on "Sign Up"
+    expect(current_path).to eq(login_path)
 
-    expect(current_path).to eq(new_user_path)
-
-    within("#signup-form") do
+    within("#login-form") do
       fill_in "email", with: user.email
       fill_in "password", with: user.password
-      fill_in "password_confirmation", with: user.password
-      click_button "Sign Up"
+      click_button "Log In"
     end
 
     within ".alert" do
-      expect(page).to have_content("Account created successfully!")
+      expect(page).to have_content("Successfully logged in!")
     end
 
     expect(current_path).to eq(root_path)
