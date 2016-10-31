@@ -57,6 +57,8 @@ function updateLinkStatus() {
         $(target).closest("td").prev().text(updatedStatus);
         $(target).closest("tr").toggleClass('readStyle');
         $(target).closest("tr").toggleClass('unreadStyle');
+        var text = $(target).text();
+        $(target).text(text == "Mark as Read" ? "Mark as Unread" : "Mark as Read");
       },
       error: function(error) {
         console.log(error);
