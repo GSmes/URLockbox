@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Links Endpoint', :type => :request do
+RSpec.describe 'Links Endpoint', type: :request do
   context "as an authenticated user" do
     it 'should return a collection of all links' do
       user = create(:user)

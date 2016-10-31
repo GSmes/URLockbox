@@ -11,7 +11,7 @@ class Api::V1::LinksController < Api::ApiController
     link = Link.create(link_params)
     current_user.links << link
 
-    render json: link, location: nil
+    render json: link, status: 201, location: nil
   end
 
   # def update

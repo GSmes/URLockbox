@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "user views all links", :type => :feature, :js => true do
+RSpec.feature "user views all links", js: true do
   let!(:user) { create(:user) }
   let!(:user_links) { create_list(:link, 2, user: user) }
   let!(:other_links) { create_list(:link, 2) }
@@ -10,7 +10,7 @@ RSpec.describe "user views all links", :type => :feature, :js => true do
       .to receive(:current_user)
       .and_return(user)
 
-    visit "/"
+    visit root_path
 
     expect(current_path).to eq(root_path)
 
