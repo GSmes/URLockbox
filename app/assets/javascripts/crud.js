@@ -2,6 +2,7 @@ $(document).ready(function() {
   getLinks();
   createLink();
   updateLinkStatus();
+  updateLinkText();
 });
 
 function getLinks() {
@@ -31,6 +32,7 @@ function createLink() {
         clearFields();
       },
       error: function(error) {
+        flashAlert(error.responseJSON.join(", "));
         console.log(error);
       }
     });
@@ -57,6 +59,37 @@ function updateLinkStatus() {
         $(target).closest("tr").toggleClass('unreadStyle');
       },
       error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+}
+
+function updateLinkText() {
+  $("#linksTable").on('blur', '.input', function(e) {
+    var linkId = e.currentTarget.id.replace(/^\D+/g, "");
+    var title_id = "#title-" + linkId;
+    var url_id = "#url-" + linkId;
+    var edit_data = {
+      title: $(title_id).text(),
+      url: $(url_id).text()
+    };
+
+    $.ajax({
+      url: "/api/v1/links/" + linkId,
+      type: "PATCH",
+      dataType: "JSON",
+      data: edit_data,
+      success: function(response) {
+        $(title_id).text(response.title);
+        $(url_id).text(response.url);
+      },
+      error: function(error) {
+        var errorData = error.responseJSON;
+
+        flashAlert(errorData.errors.join(", "));
+        $(title_id).text(errorData.link.title);
+        $(url_id).text(errorData.link.url);
         console.log(error);
       }
     });

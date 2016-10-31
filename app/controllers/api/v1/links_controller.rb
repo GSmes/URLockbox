@@ -8,16 +8,25 @@ class Api::V1::LinksController < Api::ApiController
   end
 
   def create
-    link = Link.create(link_params)
+    link = Link.new(link_params)
     current_user.links << link
 
-    render json: link, status: 201, location: nil
+    if link.save
+      render json: link, status: 201, location: nil
+    else
+      render json: link.errors.full_messages, status: 422, location: nil
+    end
   end
 
   def update
     link = Link.find(params[:id])
+    updated_link = Link.update(params[:id], link_params)
 
-    render json: link.update(link_params), location: nil
+    if updated_link.valid?
+      render json: updated_link, location: nil
+    else
+      render json: { errors: updated_link.errors.full_messages, link: link }, status: 422, location: nil
+    end
   end
 
   private
