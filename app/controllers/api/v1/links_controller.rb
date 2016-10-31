@@ -14,11 +14,11 @@ class Api::V1::LinksController < Api::ApiController
     render json: link, status: 201, location: nil
   end
 
-  # def update
-  #   link = Link.find(params[:id])
-  #
-  #   render json: link.update(link_params), location: nil
-  # end
+  def update
+    link = Link.find(params[:id])
+
+    render json: link.update(link_params), location: nil
+  end
 
   private
 
