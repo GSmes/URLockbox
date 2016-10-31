@@ -6,4 +6,13 @@ FactoryGirl.define do
   end
 
   sequence(:email) { |n| "user#{n}@example.com" }
+
+  factory :link do
+    title
+    url
+    user
+  end
+
+  sequence(:title) { |n| "Link #{n}" }
+  sequence(:url) { |n| "https://www.google.com/#{n}" }
 end
