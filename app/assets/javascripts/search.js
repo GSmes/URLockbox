@@ -1,5 +1,5 @@
 function searchLinks() {
-  $('#searchField').on('keyup', function(e){
+  $('#searchField').on('keyup', function(){
     var query = this.value.toLowerCase();
     var linkRows = $("#table-body").children('tr');
 

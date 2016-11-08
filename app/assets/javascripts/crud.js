@@ -6,6 +6,7 @@ $(document).ready(function() {
   updateTitleText();
   updateUrlText();
   searchLinks();
+  filterLinks();
 });
 
 function getLinks() {

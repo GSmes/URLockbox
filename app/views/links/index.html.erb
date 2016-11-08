@@ -20,10 +20,26 @@
       </form>
     </div>
 
-    <div class="well" id="searchWell">
-      <form class="form-inline" role="search">
-        <input class="form-control" type="text" id="searchField" name="search" placeholder="Search for links...">
-      </form>
+    <div class="well" id="filterWell">
+      <ul>
+        <li class="form-inline" id="searchForm">
+          <input class="form-control" type="text" id="searchField" name="search" placeholder="Search for links...">
+        </li>
+
+        <li class="btn-group" role="group" aria-label="..." id="filterButtons">
+          <button type="button" class="btn btn-default" id="showAll">Show All</button>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filter by
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="" role="button" id="showRead">Read</a></li>
+              <li><a href="" role="button" id="showUnread">Unread</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <div class="links"></div>

@@ -23,11 +23,19 @@ body {
   margin-bottom: 6px;
 }
 
-#searchWell {
+#filterWell {
   background: none;
   color: white;
   border: none;
   margin-bottom: 4px;
+}
+
+#filterWell ul li {
+  display: inline-block;
+}
+
+#filterButtons {
+  padding-left: 15px;
 }
 
 #linksTable {
