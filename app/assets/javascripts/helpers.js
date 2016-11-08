@@ -9,7 +9,9 @@ function prependRow(link) {
       "</td>" +
 
       "<td contenteditable='false' class='urlInput' id=url-" + link.id + ">" +
-        link.url +
+        "<a href='" + link.url + "'>" +
+          link.url +
+        "</a>" +
       "</td>" +
 
       "<td class='status' id='read-status-" + link.id + "'>" +
