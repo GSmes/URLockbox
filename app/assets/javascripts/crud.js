@@ -5,6 +5,7 @@ $(document).ready(function() {
   editLink();
   updateTitleText();
   updateUrlText();
+  searchLinks();
 });
 
 function getLinks() {

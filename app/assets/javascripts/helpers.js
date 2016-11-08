@@ -4,11 +4,11 @@ function prependRow(link) {
 
   $("#table-body").prepend(
     "<tr class='" + rowStyle + "' id='link-"+ link.id +"'>" +
-      "<td contenteditable='false' class='titleInput' id=title-" + link.id + ">" +
+      "<td contenteditable='false' class='titleInput search' id=title-" + link.id + ">" +
         link.title +
       "</td>" +
 
-      "<td contenteditable='false' class='urlInput' id=url-" + link.id + ">" +
+      "<td contenteditable='false' class='urlInput search' id=url-" + link.id + ">" +
         "<a href='" + link.url + "'>" +
           link.url +
         "</a>" +
