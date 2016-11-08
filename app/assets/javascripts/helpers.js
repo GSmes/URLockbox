@@ -4,11 +4,11 @@ function prependRow(link) {
 
   $("#table-body").prepend(
     "<tr class='" + rowStyle + "' id='link-"+ link.id +"'>" +
-      "<td contenteditable='true' class='title input' id=title-" + link.id + ">" +
+      "<td contenteditable='false' class='titleInput' id=title-" + link.id + ">" +
         link.title +
       "</td>" +
 
-      "<td contenteditable='true' class='input' id=url-" + link.id + ">" +
+      "<td contenteditable='false' class='urlInput' id=url-" + link.id + ">" +
         link.url +
       "</td>" +
 
@@ -19,11 +19,15 @@ function prependRow(link) {
       "<td class='update'>" +
         "<center>" +
           "<div read-status='" + link.read + "'" +
-            "<button type='button' class='update-status btn btn-md btn-default' id='" + link.id + "'>" +
+            "<button type='button' class='update-status btn btn-md btn-primary' id='" + link.id + "'>" +
               buttonText +
             "</button>" +
           "</div>" +
         "</center>" +
+      "</td>" +
+
+      "<td class='edit'>" +
+        "<button type='button' class='edit-link btn btn-md btn-default' id='" + link.id + "'>Edit</button>" +
       "</td>" +
     "</tr>"
   );

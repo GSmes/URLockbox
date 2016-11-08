@@ -2,7 +2,9 @@ $(document).ready(function() {
   getLinks();
   createLink();
   updateLinkStatus();
-  updateLinkText();
+  editLink();
+  updateTitleText();
+  updateUrlText();
 });
 
 function getLinks() {
@@ -67,15 +69,22 @@ function updateLinkStatus() {
   });
 }
 
-function updateLinkText() {
-  $("#linksTable").on('blur', '.input', function(e) {
-    var linkId = e.currentTarget.id.replace(/^\D+/g, "");
+function editLink() {
+  $("#linksTable").on('click', '.edit-link', function(e) {
+    var target = e.currentTarget;
+
+    $(target).prop('disabled', true);
+    $(target).parent().prev().prev().prev().attr('contenteditable', 'true');
+    $(target).parent().prev().prev().prev().prev().attr('contenteditable', 'true');
+  });
+}
+
+function updateTitleText() {
+  $("#linksTable").on('blur', '.titleInput', function(e) {
+    var target = e.currentTarget;
+    var linkId = target.id.replace(/^\D+/g, "");
     var title_id = "#title-" + linkId;
-    var url_id = "#url-" + linkId;
-    var edit_data = {
-      title: $(title_id).text(),
-      url: $(url_id).text()
-    };
+    var edit_data = { title: $(title_id).text() };
 
     $.ajax({
       url: "/api/v1/links/" + linkId,
@@ -84,13 +93,43 @@ function updateLinkText() {
       data: edit_data,
       success: function(response) {
         $(title_id).text(response.title);
-        $(url_id).text(response.url);
+        $(target).attr('contenteditable', 'false');
+        $(target).next().attr('contenteditable', 'false');
+        $(target).next().next().next().next().children().prop('disabled', false);
       },
       error: function(error) {
         var errorData = error.responseJSON;
 
         flashAlert(errorData.errors.join(", "));
         $(title_id).text(errorData.link.title);
+        console.log(error);
+      }
+    });
+  });
+}
+
+function updateUrlText() {
+  $("#linksTable").on('blur', '.urlInput', function(e) {
+    var target = e.currentTarget;
+    var linkId = target.id.replace(/^\D+/g, "");
+    var url_id = "#url-" + linkId;
+    var edit_data = { url: $(url_id).text() };
+
+    $.ajax({
+      url: "/api/v1/links/" + linkId,
+      type: "PATCH",
+      dataType: "JSON",
+      data: edit_data,
+      success: function(response) {
+        $(url_id).text(response.url);
+        $(target).attr('contenteditable', 'false');
+        $(target).prev().attr('contenteditable', 'false');
+        $(target).next().next().next().children().prop('disabled', false);
+      },
+      error: function(error) {
+        var errorData = error.responseJSON;
+
+        flashAlert(errorData.errors.join(", "));
         $(url_id).text(errorData.link.url);
         console.log(error);
       }
