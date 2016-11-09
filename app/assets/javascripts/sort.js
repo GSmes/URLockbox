@@ -4,7 +4,8 @@ function sortLinks() {
     var sortedLinks = sortAlphabetically(linkRows, '.titleInput');
 
     $("#table-body").html(sortedLinks);
-    $('#sortByTitle').children().removeClass().addClass('glyphicon glyphicon-sort-by-alphabet');
+
+    toggleBtnClass('#sortByTitle', '#sortByUrl');
   });
 
   $('#sortByUrl').on('click', function(){
@@ -12,7 +13,8 @@ function sortLinks() {
     var sortedLinks = sortAlphabetically(linkRows, '.urlInput');
 
     $("#table-body").html(sortedLinks);
-    $('#sortByUrl').children().removeClass().addClass('glyphicon glyphicon-sort-by-alphabet');
+
+    toggleBtnClass('#sortByUrl', '#sortByTitle');
   });
 }
 
@@ -23,4 +25,9 @@ function sortAlphabetically(linkRows, column) {
 
     return (dataA < dataB) ? -1 : (dataA > dataB) ? 1 : 0;
   });
+}
+
+function toggleBtnClass(sortedColumn, unsortedColumn) {
+  $(sortedColumn).children().removeClass().addClass('glyphicon glyphicon-sort-by-alphabet');
+  $(unsortedColumn).children().removeClass().addClass('glyphicon glyphicon-sort');
 }
