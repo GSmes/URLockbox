@@ -8,6 +8,7 @@ class Api::V1::LinksController < Api::ApiController
   end
 
   def create
+    binding.pry
     link = Link.new(link_params)
     current_user.links << link
 
