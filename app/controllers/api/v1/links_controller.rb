@@ -9,8 +9,7 @@ class Api::V1::LinksController < Api::ApiController
 
   def create
     url_params = ParamParser.new(link_params['url'])
-    link = Link.new(title: link_params['title'], url: url_params.path)
-    current_user.links << link
+    link = current_user.links.new(title: link_params['title'], url: url_params.path)
 
     if link.save && url_params.mailable?
       LinkMailer.send_new_link_email(current_user, url_params.email, url_params.path)

@@ -1,4 +1,4 @@
-class ParamParser < ApplicationRecord
+class ParamParser
   attr_reader :parsed_url
 
   def initialize(url_param)
