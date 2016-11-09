@@ -12,12 +12,10 @@ class Api::V1::LinksController < Api::ApiController
     link = current_user.links.new(title: link_params['title'], url: url_params.path)
 
     if link.save && url_params.mailable?
-      LinkMailer.send_new_link_email(current_user, url_params.email, url_params.path)
+      send_link_email(current_user, url_params)
       render json: link, status: 201, location: nil
-      flash[:success] = "Successfully created link and delivered email to #{url_params.email}!"
     elsif link.save
       render json: link, status: 201, location: nil
-      flash[:success] = "Successfully created link!"
     else
       render json: link.errors.full_messages, status: 422, location: nil
     end
@@ -38,5 +36,9 @@ class Api::V1::LinksController < Api::ApiController
 
   def link_params
     params.permit(:id, :title, :url, :read)
+  end
+
+  def send_link_email(user, params)
+    LinkMailer.send_new_link_email(user, params.email, params.path).deliver
   end
 end

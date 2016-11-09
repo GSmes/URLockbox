@@ -8,7 +8,7 @@ class LinkMailer < ApplicationMailer
 
     mail(
       :to => @email,
-      :subject => "#{@user.email} sent a link!"
+      :subject => "#{@user} sent a link!"
     )
   end
 end

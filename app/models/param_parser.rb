@@ -14,6 +14,6 @@ class ParamParser
   end
 
   def mailable?
-    parsed_url[1] == '\\cc:'
+    parsed_url[1] == '\cc:'
   end
 end
