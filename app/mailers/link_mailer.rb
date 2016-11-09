@@ -1,8 +1,8 @@
-class UserNotifierMailer < ApplicationMailer
+class LinkMailer < ApplicationMailer
   default :from => 'no-reply@urlockbox.com'
 
   def send_new_link_email(user, email, link)
-    @user = user
+    @user = user.email
     @email = email
     @link = link
 

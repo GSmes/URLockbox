@@ -8,12 +8,17 @@ class Api::V1::LinksController < Api::ApiController
   end
 
   def create
-    binding.pry
-    link = Link.new(link_params)
+    url_params = ParamParser.new(link_params['url'])
+    link = Link.new(title: link_params['title'], url: url_params.path)
     current_user.links << link
 
-    if link.save
+    if link.save && url_params.mailable?
+      LinkMailer.send_new_link_email(current_user, url_params.email, url_params.path)
       render json: link, status: 201, location: nil
+      flash[:success] = "Successfully created link and delivered email to #{url_params.email}!"
+    elsif link.save
+      render json: link, status: 201, location: nil
+      flash[:success] = "Successfully created link!"
     else
       render json: link.errors.full_messages, status: 422, location: nil
     end
