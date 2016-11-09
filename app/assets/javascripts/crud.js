@@ -7,6 +7,7 @@ $(document).ready(function() {
   updateUrlText();
   searchLinks();
   filterLinks();
+  sortLinks();
 });
 
 function getLinks() {
